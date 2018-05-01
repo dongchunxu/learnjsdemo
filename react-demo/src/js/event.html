@@ -1,0 +1,78 @@
+<html>
+    <head>
+            <style>
+                #innerDiv{
+                    background:red;
+                    width:100px;
+                    height:100px;
+                }
+                #outerDiv{
+                    background:black;
+                    width:200px;
+                    height:200px;
+                }
+            </style>
+    </head>
+
+    <body>
+
+        <button>click me!</button>
+        <script>
+            var btn = document.querySelector('button');
+
+            btn.addEventListener('click', function () {
+                alert('click me.');
+            });
+            
+            btn.addEventListener('click', function () {
+                alert('click me twice.');
+            })  //IE8之前不支持
+        </script>
+
+
+        <div id="outerDiv">
+            <div id="innerDiv">
+
+            </div>
+        </div>
+
+        <!--冒泡阶段和捕捉阶段，一个是从html开始直到当前元素，一个是从当前元素直到html-->
+        <script>
+            var innerDiv = document.querySelector("#innerDiv");
+            var outerDiv = document.querySelector("#outerDiv");
+            
+            innerDiv.onclick=function (evt) {
+                console.log("innerDiv Div");
+                evt.stopPropagation();
+            };
+
+            outerDiv.onclick=function (evt) {
+                console.log("outerDiv Div");
+            }
+        </script>
+
+        <!--事件委托-->
+        <ul id="ulList">
+            <li class="liclass"><a>li1</a><a>li12</a></li>
+            <li><a>li2</a></li>
+            <li><a>li3</a></li>
+            <li><a>li4</a></li>
+        </ul>
+        <script>
+            var ul = document.querySelector('#ulList');
+            ul.addEventListener('click', function (e) {
+                console.log(e.target);
+                console.log(e.target.className);
+                console.log(e.srcElement);
+                console.log(e.className);
+                console.log(e.target.nodeName);
+            })
+        </script>
+
+        <script>
+            const name;
+
+
+        </script>
+    </body>
+</html>
